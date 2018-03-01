@@ -1,22 +1,18 @@
 import React from "react";
 import { render } from "react-dom";
-import { Grid, Row, Col, Panel, Button } from "react-bootstrap";
+import { Grid, Row, Col, Panel, Button, Well } from "react-bootstrap";
 
-class CharacterSelectionByList extends React.PureComponent{
+class CharacterSelectionByList extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            characterList: [
-                {_id: 1, name: "Mitch"},
-                {_id: 2, name: "King"},
-                {_id: 3, name: "Kong"}
-            ]
+            characterList: []
         };
     };
 
-    componentDidMount() {
-        if (this.props.characterList) {
-            this.setState({characterList: this.props.characterList})
+    componentWillReceiveProps(nextProps) {
+        if (JSON.stringify(nextProps.characterList) !== JSON.stringify(this.state.characterList)) {
+            this.setState({ characterList: nextProps.characterList })
         };
     };
 
@@ -31,12 +27,12 @@ class CharacterSelectionByList extends React.PureComponent{
     };
 
     render() {
-        let htmlCharacterList = this.state.characterList.map( (character) => {
+        let htmlCharacterList = this.state.characterList.map((character) => {
             return (
                 <React.Fragment key={character._id}>
-                    <li onClick={this.selectCharacter.bind(this, character)}>
-    
-                        <Button 
+                    <li onClick={this.selectCharacter.bind(this, character)} className="strip-ul">
+
+                        <Button
                             type="button"
                             bsStyle="danger"
                             bsSize="xsmall"
@@ -47,20 +43,20 @@ class CharacterSelectionByList extends React.PureComponent{
                         </Button>
 
                         {character.name} - ({character._id})
-                                        
+
                     </li>
                 </React.Fragment>
             )
         });
 
-        return(
-            <Grid>
-                <Row>
-                    <ul>
+        return (
+            <Row>
+                <Col xs={12}>
+                    <ul className="strip-ul">
                         {htmlCharacterList}
                     </ul>
-                </Row>            
-            </Grid>
+                </Col>
+            </Row>
         );
     };
 };

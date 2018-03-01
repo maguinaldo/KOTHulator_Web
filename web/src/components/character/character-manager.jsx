@@ -1,8 +1,11 @@
 import React from "react";
 import { render } from "react-dom";
 import { Grid, Row, Col, Panel } from "react-bootstrap";
+
 import CharacterProfile from "./character-profile";
 import CharacterSelectionByList from "./character-selection-by-list";
+
+import characterService from "../../services/character.service";
 
 class CharacterManager extends React.PureComponent {
     constructor(props) {
@@ -10,8 +13,13 @@ class CharacterManager extends React.PureComponent {
         this.state = {
             characterList: [],
             selectedCharacter: null
-        }
-    }
+        };
+    };
+
+    componentDidMount() {
+        let x = characterService.readAll();
+        this.setState({characterList: x.data});
+    };
 
     render() {
 
@@ -26,13 +34,17 @@ class CharacterManager extends React.PureComponent {
 
                     {/* Display selected char */}
                     <Row>
-                        <CharacterProfile character={this.state.selectedCharacter} />
+                        <Col xs={12}>
+                            <CharacterProfile character={this.state.selectedCharacter} />
+                        </Col>
                     </Row>
                     {/* /Display selected char */}
 
                     {/* Provide list of selectable profiles */}
                     <Row>
-                        <CharacterSelectionByList characterList={null} />
+                        <Col xs={12}>
+                            <CharacterSelectionByList characterList={this.state.characterList} />
+                        </Col>
                     </Row>
                     {/* Provide list of selectable profiles */}
 

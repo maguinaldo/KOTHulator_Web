@@ -6,14 +6,14 @@ class CharacterCreate extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            currentCharacter: {}
+            character: {}
         };
         this.submitCharacter = this.submitCharacter.bind(this);
     };
 
     componentDidMount() {
         if (this.props.character) {
-            this.setState({ currentCharacter: this.props.character })
+            this.setState({ character: this.props.character })
         };
 
     };
@@ -24,11 +24,13 @@ class CharacterCreate extends React.PureComponent {
     };
 
     render() {
+        let headingText = this.state.character._id ? `Character Edit` : `Create a new character`;
+
         return (
             <Panel>
 
                 <Panel.Heading>
-                    Create a new character
+                    {headingText}
                 </Panel.Heading>
                 
                 <Panel.Body>
@@ -44,6 +46,10 @@ class CharacterCreate extends React.PureComponent {
                                 
                                 <div className="form-group">
                                     <input className="form-control" placeholder="Type... (Monster, Bug, Beast, etc.)" />
+                                </div>
+
+                                <div className="form-group">
+                                    <input className="form-control" placeholder="Image URL" />
                                 </div>
                             
                             </div>

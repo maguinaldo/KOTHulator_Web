@@ -1,5 +1,4 @@
 import React from 'react';
-import { render } from 'react-dom';
 import { Grid, Row, Col, Panel } from 'react-bootstrap';
 
 class CharacterProfile extends React.PureComponent {
@@ -22,19 +21,19 @@ class CharacterProfile extends React.PureComponent {
 
     render() {
         return (
-            <Grid>
-                <Row>
+            <div>
+                <div className="row">
                     <div className="img-profile">
                         <img src={this.state.character.imageUrl} />
                     </div>
-                </Row>
-                <Row>
+                </div>
+                <div className="row marin-side-5">
                     Name: {this.state.character.name}
-                </Row>
-                <Row>
+                </div>
+                <div className="row marin-side-5">
                     Type: {this.state.character.type}
-                </Row>
-            </Grid>
+                </div>
+            </div>
         );
     };
 };
