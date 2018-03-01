@@ -6,16 +6,20 @@ class CharacterProfile extends React.PureComponent {
         super(props);
         this.state = {
             character: {
-                name: "None Selected",
-                type: "N/A",
-                imageUrl: "http://weclipart.com/gimg/BE3E6BD8A136D0E1/di7jA7n6T.gif",
+                _id: "",
+                name: "",
+                type: "",
+                imageUrl: "",
             }
         };
     };
 
-    componentDidMount() {
-        if (this.props.character) {
-            this.setState({character: this.props.character})
+    componentWillReceiveProps(nextProps) {
+        if (
+            JSON.stringify(nextProps.character) !== JSON.stringify(this.state.character)
+            && nextProps.character
+        ) {
+            this.setState({ character: nextProps.character })
         };
     };
 

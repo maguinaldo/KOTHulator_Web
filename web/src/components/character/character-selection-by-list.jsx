@@ -18,7 +18,7 @@ class CharacterSelectionByList extends React.PureComponent {
 
     selectCharacter(character, e) {
         e.preventDefault();
-        window.alert(`${character._id} was clicked`);
+        this.props.changeSelectedCharacter(character);
     };
 
     deleteCharacter(characterId, e) {
@@ -52,6 +52,7 @@ class CharacterSelectionByList extends React.PureComponent {
         return (
             <Row>
                 <Col xs={12}>
+                    <h3>Selectable Characters</h3>
                     <ul className="strip-ul">
                         {htmlCharacterList}
                     </ul>
