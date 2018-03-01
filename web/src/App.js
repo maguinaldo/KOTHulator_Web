@@ -1,21 +1,35 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import MainPage from './components/main-page/main-page'
+import { Grid, Row, Col, Well } from 'react-bootstrap';
 
-class App extends Component {
+class App extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  };
+
   render() {
     return (
       <div className="App">
+
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">KOTHulator</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+
+        <Grid 
+          componentClass="div"
+        >
+          <Row>
+            <MainPage />
+          </Row>
+        </Grid>
+
       </div>
     );
-  }
-}
+  };
+};
 
 export default App;
