@@ -64,7 +64,6 @@ class CharacterModule extends React.PureComponent {
             .then(result => {
                 let newCharacterList = this.state.characterList.filter(character => character._id !== id);
                 this.setState({ characterList: newCharacterList });                        
-                window.alert("update complete")
             })
             .catch( err => {
                 window.alert("Check conSOLO");
