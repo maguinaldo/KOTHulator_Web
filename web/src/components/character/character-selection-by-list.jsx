@@ -23,7 +23,8 @@ class CharacterSelectionByList extends React.PureComponent {
 
     deleteCharacter(characterId, e) {
         e.stopPropagation();
-        window.alert(`${characterId} is up for deletion`)
+        window.alert(`${characterId} is up for deletion`);
+        this.props.deleteCharacter(characterId);
     };
 
     render() {

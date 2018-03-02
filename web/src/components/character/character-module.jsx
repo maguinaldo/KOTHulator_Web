@@ -25,6 +25,7 @@ class CharacterModule extends React.PureComponent {
         this.changeSelectedCharacter = this.changeSelectedCharacter.bind(this);
         this.editCharacter = this.editCharacter.bind(this);
         this.createCharacter = this.createCharacter.bind(this);
+        this.deleteCharacter = this.deleteCharacter.bind(this);
     };
 
     componentDidMount() {
@@ -50,15 +51,26 @@ class CharacterModule extends React.PureComponent {
     createCharacter(character) {
         delete character._id
         characterService.create(character)
-            .then( result => {
-                console.log(result)
-                // let newState = [...this.state.characterList]
-                // newState.push(character)
-                // this.setState({ characterList: newState });
+            .then(result => {
+                let newState = [...this.state.characterList]
+                character._id = result.data;
+                newState.push(character)
+                this.setState({ characterList: newState });
             })
+    };
 
-        
-
+    deleteCharacter(id) {
+        characterService.delete(id)
+            .then(result => {
+                let newCharacterList = this.state.characterList.filter(character => character._id !== id);
+                this.setState({ characterList: newCharacterList });                        
+                window.alert("update complete")
+            })
+            .catch( err => {
+                window.alert("Check conSOLO");
+                console.log(err)
+            })
+        ;
     };
 
     render() {
@@ -80,6 +92,7 @@ class CharacterModule extends React.PureComponent {
                         characterList={this.state.characterList}
                         selectedCharacter={this.state.selectedCharacter}
                         changeSelectedCharacter={this.changeSelectedCharacter}
+                        deleteCharacter={this.deleteCharacter}
                     />
 
                 </Col>

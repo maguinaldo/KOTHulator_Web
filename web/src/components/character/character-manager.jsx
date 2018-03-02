@@ -39,6 +39,7 @@ class CharacterManager extends React.PureComponent {
                             <CharacterSelectionByList 
                                 characterList={this.props.characterList} 
                                 changeSelectedCharacter = {this.props.changeSelectedCharacter}
+                                deleteCharacter = {this.props.deleteCharacter}
                             />
                         </Col>
                     </Row>

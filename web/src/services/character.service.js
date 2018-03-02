@@ -20,7 +20,18 @@ const characterService = {
         return true
     },
     delete: (id) => {
-        return true
+        const config = {
+            method: "DELETE",
+            data: {
+                _id: id
+            }
+        }
+
+        return axios("http://localhost:7070/api/character/delete", config)
+            .then(successHandler)
+            .catch(errorHandler);
+    ;
+
     },
     readById: (id) => {
         return true
